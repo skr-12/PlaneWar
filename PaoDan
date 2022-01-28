@@ -1,0 +1,34 @@
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+
+public class PaoDan {
+	private int x = 150,y = 420;
+	private int width = 8;
+	private int height = 8;
+	private static final int X_PD = 30;
+	private static final int Y_PD = 30;
+	boolean U = false,D = false,L = false,R = false;
+	
+	public void paintPD(Graphics g) {
+		g.setColor(Color.RED);
+		g.fillOval(x, y, width, height);
+		move();
+	}
+	
+	public void move() {
+		if(U && !D && !L && !R) {
+			y = y - Y_PD;
+		}
+		else if(!U && D && !L && !R) {
+			y = y - Y_PD;
+		}
+		else if(!U && !D && L && !R) {
+			y = y - Y_PD;
+		}
+		else if(!U && !D && !L && R) {
+			y = y - Y_PD;
+		}
+	}
+	
+}
