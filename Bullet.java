@@ -1,3 +1,5 @@
+package PlaneWar;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -12,6 +14,9 @@ public class Bullet {
 	boolean U = false,D = false,L = false,R = false;
 	boolean live = true;
 	public MainConsole mc;
+	int BigLife = 5;
+	int MediumLife = 3;
+	int SmallLife = 1;
 	
 	public Bullet(int x,int y,MainConsole mc) {
 		this.x_location = x;
@@ -52,7 +57,12 @@ public class Bullet {
 	
 	public boolean knock(EnemyPlane a) {
 		if(this.getRectange().intersects(a.getRectange())) {
+			BigLife--;
+			MediumLife--;
+			SmallLife--;
+			if(BigLife == 0 || MediumLife == 0 || SmallLife == 0) {
 			a.setLive(false);
+			}
 			this.live = false;
 			Burst u = new Burst(x_location,y_location,mc);
 			mc.bz.add(u);
