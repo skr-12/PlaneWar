@@ -4,6 +4,8 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.List;
 
+//bullet增加功能，子弹可以穿墙
+
 public class Bullet {
 	int x_location=150,y_location=420;
 	private int width = 10;
