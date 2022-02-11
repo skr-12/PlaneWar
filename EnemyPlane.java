@@ -70,7 +70,31 @@ public class EnemyPlane {
 	
 	public void setLive(boolean live) {
 		this.live = live;
-	} 
+	}
+	
+	public void setLife1(int life) {
+		this.BigLife = life;	
+	}
+	
+	public int getLife1() {
+		return BigLife;
+	}
+	
+	public void setLife2(int life) {	
+		this.MediumLife = life;
+	}
+	
+	public int getLife2() {
+		return MediumLife;
+	}
+	
+	public void setLife3(int life) {	
+		this.SmallLife = life;
+	}
+	
+	public int getLife3() {
+		return SmallLife;
+	}
 	
 	public Rectangle getRectange() {
 		Rectangle rd = new Rectangle(x,y,WIDTH,HEIGHT);

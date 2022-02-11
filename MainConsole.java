@@ -99,7 +99,7 @@ public class MainConsole extends Frame {
 				dj.add(new EnemyPlane(r.nextInt(300)+60, 50, MainConsole.this,EnemyPlane.EnemyPlaneSize.big));
 //				repaint();
 				try {  
-                    Thread.sleep(500);  
+                    Thread.sleep(5000);  
                 } catch (InterruptedException e) {  
                     e.printStackTrace();
                 }
@@ -119,7 +119,7 @@ public class MainConsole extends Frame {
 				dj.add(new EnemyPlane(r.nextInt(300)+60, 50, MainConsole.this,EnemyPlane.EnemyPlaneSize.medium));
 //				repaint();
 				try {  
-                    Thread.sleep(30000);  
+                    Thread.sleep(3000);  
                 } catch (InterruptedException e) {  
                     e.printStackTrace();
                 }
@@ -141,7 +141,7 @@ public class MainConsole extends Frame {
 				dj.add(new EnemyPlane(r.nextInt(300)+60, 50, MainConsole.this,EnemyPlane.EnemyPlaneSize.small));
 //				repaint();
 				try {  
-                    Thread.sleep(10000);  
+                    Thread.sleep(1000);  
                 } catch (InterruptedException e) {  
                     e.printStackTrace();
                 }
