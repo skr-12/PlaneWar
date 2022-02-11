@@ -25,7 +25,7 @@ public class MainConsole extends Frame {
 //		for(int i=0;i<8;i++) {
 //			dj.add(new EnemyPlane(30*(2+i),50,this,EnemyPlaneSize.big));
 //		}	
-		this.setTitle("·É»ú´óÕ½");
+		this.setTitle("é£žæœºå¤§æˆ˜");
 		this.setSize(300, 500);
 		this.setLocation(200, 200);
 		this.setVisible(true);
