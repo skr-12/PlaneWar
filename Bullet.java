@@ -4,12 +4,17 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 public class Bullet {
 	int x_location,y_location;
-	public static int WIDTH = 10;
-	public static int HEIGHT = 10;
+	public static int WIDTH = 20;
+	public static int HEIGHT = 20;
 	private static final int Y_PD = 50;
 	boolean U = false,D = false,L = false,R = false;
 	boolean live = true;
@@ -29,8 +34,12 @@ public class Bullet {
 			mc.pd.remove(this);
 			return;
 		}
-		g.setColor(Color.RED);
-		g.fillOval(x_location, y_location, WIDTH, HEIGHT);
+		try {
+			BufferedImage image = ImageIO.read(new File("img\\Bullet.jpeg"));
+			g.drawImage(image, x_location, y_location, WIDTH, HEIGHT, mc);
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 		move();
 	}
 	
@@ -57,12 +66,12 @@ public class Bullet {
 	
 	public boolean knock(EnemyPlane a) {
 		if(this.getRectange().intersects(a.getRectange())) {
-			BigLife--;
-			MediumLife--;
-			SmallLife--;
-			if(BigLife == 0 || MediumLife == 0 || SmallLife == 0) {
-			a.setLive(false);
-			}
+//			BigLife--;
+//			MediumLife--;
+//			SmallLife--;
+//			if(BigLife == 0 || MediumLife == 0 || SmallLife == 0) {
+//			a.setLive(false);
+//			}
 			this.live = false;
 			Burst u = new Burst(x_location,y_location,mc);
 			mc.bz.add(u);

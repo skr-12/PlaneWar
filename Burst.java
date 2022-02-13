@@ -2,6 +2,11 @@ package PlaneWar;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Burst {
 	int x,y;
@@ -24,8 +29,14 @@ public class Burst {
 		if(j == fireworks.length) {
 			this.setLive(false);
 		}
-		g.setColor(Color.YELLOW);
-		g.fillOval(x, y, fireworks[j], fireworks[j]);
+		try {
+			BufferedImage image = ImageIO.read(new File("img\\Burst.png"));
+			g.drawImage(image, x, y, fireworks[j], fireworks[j], mc);
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+//		g.setColor(Color.YELLOW);
+//		g.fillOval(x, y, fireworks[j], fireworks[j]);
 		if(j<6) {
 		j++;
 		}

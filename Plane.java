@@ -4,19 +4,27 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class Plane {
 	int x_location;
 	int y_location;
-	public static final int WIDTH = 30;
-	public static final int HEIGHT = 30;
+	public static final int WIDTH = 40;
+	public static final int HEIGHT = 60;
 	private static final int x_weiyi=15;
 	private static final int y_weiyi=15;
 	boolean U = false,D = false,L = false,R = false;
 	boolean live = true;
 	MainConsole mc;
+	private BufferedImage image;
+	private Object img;
 
 	public Plane(int x,int y,MainConsole mc) {
 		this.x_location = x;
@@ -26,10 +34,21 @@ public class Plane {
 	
 	public void paint(Graphics g) {
     	if(!live) {return;}
-		g.setColor(Color.BLACK);	
-		g.fillRect(x_location, y_location, WIDTH, HEIGHT);
+//		g.setColor(Color.BLACK);	
+//		g.fillRect(x_location, y_location, WIDTH, HEIGHT);
+		try {
+//			File f = 
+//			ImageIcon f = new ImageIcon("img\\Plane.png");
+			BufferedImage image = ImageIO.read(new File("img\\Plane.png"));
+			g.drawImage(image, x_location, y_location, WIDTH, HEIGHT, mc);
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 		this.move();
 		shot();
+
 	}
 	
 	public void move() {
@@ -64,19 +83,26 @@ public class Plane {
 		if(!live) {
 			return null;
 		}
-//希望通过控制炮弹装填的速度来使炮弹不那么密集，过20次循环装一次		
-//		int xunhuan = 0;
-//		while(true) {
-//			xunhuan++;
-//		if(xunhuan % 10 == 0) {
 		int x = this.x_location + Plane.WIDTH/2 - Bullet.WIDTH/2;
 		int y = this.y_location + Plane.HEIGHT/2 - Bullet.HEIGHT/2;
 		Bullet m = new Bullet(x,y,mc);
-		mc.pd.add(m);	
+		mc.pd.add(m);
 		return m;
-//			}
-//		}
 	}
+		
+//	public void angle() {
+//		int xunhuan = 0;
+//		int x = this.x_location + Plane.WIDTH/2 - Bullet.WIDTH/2;
+//		int y = this.y_location + Plane.HEIGHT/2 - Bullet.HEIGHT/2;
+//		while(true) {
+//				xunhuan++;
+//			if(xunhuan % 20 == 0) {
+//				
+//				Bullet m = new Bullet(x,y,mc);
+//				mc.pd.add(m);
+//			}
+//		}	
+//	}
 	
 	public void keyPressed(KeyEvent e) {
 		int k = e.getKeyCode();

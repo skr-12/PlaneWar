@@ -3,8 +3,13 @@ package PlaneWar;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
+
+import javax.imageio.ImageIO;
 
 public class EnemyPlane {
 	int x,y;
@@ -21,6 +26,7 @@ public class EnemyPlane {
 	int BigLife = 5;
 	int MediumLife = 3;
 	int SmallLife = 1;
+	private BufferedImage image;
 	
 	public EnemyPlane(int x,int y,MainConsole mc) {
 		this.x = x;
@@ -47,16 +53,22 @@ public class EnemyPlane {
 		}
 		
 		if(size == EnemyPlaneSize.medium) {
-			this.WIDTH = 20;
-			this.HEIGHT = 30;
+			this.WIDTH = 35;
+			this.HEIGHT = 40;
 		}
 		
 		if(size == EnemyPlaneSize.big) {
-			this.WIDTH = 50;
+			this.WIDTH = 55;
 			this.HEIGHT = 60;
 		}
-		g.setColor(Color.GREEN);
-		g.fillOval(x, y, WIDTH, HEIGHT);
+		try {
+			BufferedImage image = ImageIO.read(new File("img\\EnemyPlane.jpeg"));
+			g.drawImage(image, x, y, WIDTH, HEIGHT, mc);
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+//		g.setColor(Color.GREEN);
+//		g.fillOval(x, y, WIDTH, HEIGHT);
 		move();
 	}
 	
@@ -101,13 +113,17 @@ public class EnemyPlane {
 		return  rd;
 	}
 	public boolean knock(Bullet a) {
-		if(this.getRectange().intersects(a.getRectange())) {		
+		if(this.getRectange().intersects(a.getRectange())) {
 			BigLife--;
 			MediumLife--;
 			SmallLife--;
+			System.out.println(BigLife+"===big====");
+			System.out.println(MediumLife+"===medium====");
+			System.out.println(SmallLife+"===small====");
 			a.setLive(false);
-			if(BigLife == 0 || MediumLife == 0 || SmallLife == 0) {
-			this.live = false;
+			if(BigLife <= 0 || MediumLife <= 0 || SmallLife <= 0) {
+				this.live = false;
+
 			}
 			return true;
 		}
